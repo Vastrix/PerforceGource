@@ -21,7 +21,7 @@ try: #Idiot Proofing..
     a = open(options.output, 'w')
     a.close()
 except:
-    print(colorama.Fore.RED+"Check if {} is a correct accesible path, and that I have perms to write to it..".format(options.output)+colorama.Fore.RESET)
+    print(colorama.Fore.RED+"Check if {} is a correct accessible path, and that I have perms to write to it..".format(options.output)+colorama.Fore.RESET)
     sys.exit(1)
 
 
