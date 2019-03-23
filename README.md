@@ -7,5 +7,4 @@ This is just a quick Python script I wrote in between classes
 It's a **Console application**, so using the console, type:  
 `PerforceGource.exe <//DEPOTPATH> [-o <Output Path>]`
 
-Before using the above command:
-- Start perforce and log in
+Before using the above command, make sure Perforce is running and that you're logged in!
