@@ -34,7 +34,7 @@ def FetchChanges(depot:str)->typing.List[str]:
         if(e.stderr.decode("utf-8", errors ="ignore").find("must refer to client")!=-1):
             print(colorama.Fore.RED+"According to this error P4 gave me, you don't have access to the {} depot!".format(DEPOT)+colorama.Fore.RESET)
         else:
-            print(colorama.Fore.RED+e.stderr.decode("utf-8", errors ="ignore")+colorama.Fore.RESET)
+            print(colorama.Fore.RED+'\n'+e.stderr.decode("utf-8", errors ="ignore")+colorama.Fore.RESET)
     else:
 
         data = data.decode("utf-8", errors ="ignore")
@@ -76,12 +76,12 @@ def ParseChanges(changes:typing.List[str])->typing.List[str]:
             description = description[description.rfind("Affected files ...\r\n\r\n")+len("Affected files ...\r\n\r\n"):] #Anti Injection
             fileActionMatches = re.findall(fileAction, description)
             for match in fileActionMatches:
-                if match[1] not in "addeditdelete" : continue
+                if match[1] not in "add edit delete branch integrate" : continue
 
                 result.append("{}|{}|{}|{}".format(
                     date,
                     name,
-                    'A' if match[1] == "add" else 'M' if match[1] == "edit" else 'D' if match[1] == "delete" else match[1],
+                    'A' if match[1] in "add branch" else 'M' if match[1] in "edit integrate" else 'D' if match[1] == "delete" else match[1],
                     match[0]
                 ))
 
